@@ -96,23 +96,31 @@
 
 
 
-  <meta name="description" content="欢迎来到我的个人空间">
-<meta property="og:type" content="website">
+  <meta name="description" content="熟悉Objective-C1、消息结构与该函数调用区别：使用消息结构的语言其运行时所应执行的代码由运行环境来决定，在运行时候才回去查找所要执行的方法，编译器不会关心接收的消息对象是什么类型，其接收消息的对象问题也是要在运行时处理，为“动态绑定”。而使用函数调用的语言，则是由编译器决定。 2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。在OC中，指针概念是用来指示对象的">
+<meta property="og:type" content="article">
 <meta property="og:title" content="肖高兵的技术空间">
-<meta property="og:url" content="http://m.tellemone.cn/index.html">
+<meta property="og:url" content="http://m.tellemone.cn/2019/02/23/熟悉Objective-C/index.html">
 <meta property="og:site_name" content="肖高兵的技术空间">
-<meta property="og:description" content="欢迎来到我的个人空间">
+<meta property="og:description" content="熟悉Objective-C1、消息结构与该函数调用区别：使用消息结构的语言其运行时所应执行的代码由运行环境来决定，在运行时候才回去查找所要执行的方法，编译器不会关心接收的消息对象是什么类型，其接收消息的对象问题也是要在运行时处理，为“动态绑定”。而使用函数调用的语言，则是由编译器决定。 2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。在OC中，指针概念是用来指示对象的">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2367584-f6a1ea8a4f394a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2367584-777dc5251f64802a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2367584-66c977e5daeb0064.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2367584-06074dfe56584efe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2367584-aebb76f7e8f1d7a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2367584-87343b06a78f15c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-02-23T10:42:45.543Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="肖高兵的技术空间">
-<meta name="twitter:description" content="欢迎来到我的个人空间">
+<meta name="twitter:description" content="熟悉Objective-C1、消息结构与该函数调用区别：使用消息结构的语言其运行时所应执行的代码由运行环境来决定，在运行时候才回去查找所要执行的方法，编译器不会关心接收的消息对象是什么类型，其接收消息的对象问题也是要在运行时处理，为“动态绑定”。而使用函数调用的语言，则是由编译器决定。 2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。在OC中，指针概念是用来指示对象的">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2367584-f6a1ea8a4f394a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
 
 
 
-  <link rel="canonical" href="http://m.tellemone.cn/">
+  <link rel="canonical" href="http://m.tellemone.cn/2019/02/23/熟悉Objective-C/">
 
 
 
@@ -122,7 +130,7 @@
   };
 </script>
 
-  <title>肖高兵的技术空间</title>
+  <title> | 肖高兵的技术空间</title>
   
 
 
@@ -170,8 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -209,7 +216,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -271,9 +278,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -306,9 +313,7 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/23/熟悉Objective-C/" class="post-title-link" itemprop="url">未命名</a>
+
               
             
           </h1>
@@ -368,9 +373,7 @@
       
 
       
-        
-          
-            <h2 id="熟悉Objective-C"><a href="#熟悉Objective-C" class="headerlink" title="熟悉Objective-C"></a><strong>熟悉Objective-C</strong></h2><h3 id="1、消息结构与该函数调用"><a href="#1、消息结构与该函数调用" class="headerlink" title="1、消息结构与该函数调用"></a>1、消息结构与该函数调用</h3><p>区别：使用消息结构的语言其运行时所应执行的代码由运行环境来决定，在运行时候才回去查找所要执行的方法，编译器不会关心接收的消息对象是什么类型，其接收消息的对象问题也是要在运行时处理，为“动态绑定”。而使用函数调用的语言，则是由编译器决定。</p>
+        <h2 id="熟悉Objective-C"><a href="#熟悉Objective-C" class="headerlink" title="熟悉Objective-C"></a><strong>熟悉Objective-C</strong></h2><h3 id="1、消息结构与该函数调用"><a href="#1、消息结构与该函数调用" class="headerlink" title="1、消息结构与该函数调用"></a>1、消息结构与该函数调用</h3><p>区别：使用消息结构的语言其运行时所应执行的代码由运行环境来决定，在运行时候才回去查找所要执行的方法，编译器不会关心接收的消息对象是什么类型，其接收消息的对象问题也是要在运行时处理，为“动态绑定”。而使用函数调用的语言，则是由编译器决定。</p>
 <h3 id="2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。"><a href="#2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。" class="headerlink" title="2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。"></a>2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。</h3><p>在OC中，指针概念是用来指示对象的。所有的对象都必须是一个指向该类型的指针表示，因为对象所占用的内训空间是分配在“堆空间”（heap space）中，不是分配在“栈”（stack）上。且不能在栈上分配OC对象。两个指针指向一个实例时，栈帧则分配两块内存存放变量指向堆中的同一个实际内容。</p>
 <p><code>NSString *someString = @“someString”;</code></p>
 <p><code>NSString *anotherString = someString;</code></p>
@@ -409,8 +412,6 @@
 </ul>
 <p><img src="http://upload-images.jianshu.io/upload_images/2367584-87343b06a78f15c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20170109-5.png"></p>
 
-          
-        
       
     </div>
 
@@ -433,159 +434,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://m.tellemone.cn/2019/02/23/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiaogaobing">
-      <meta itemprop="description" content="欢迎来到我的个人空间">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="肖高兵的技术空间">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/23/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2019/02/23/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-23 17:36:42" itemprop="dateCreated datePublished" datetime="2019-02-23T17:36:42+08:00">2019-02-23</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -595,14 +465,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -622,8 +493,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -667,6 +547,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟悉Objective-C"><span class="nav-number">1.</span> <span class="nav-text">熟悉Objective-C</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、消息结构与该函数调用"><span class="nav-number">1.1.</span> <span class="nav-text">1、消息结构与该函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。"><span class="nav-number">1.2.</span> <span class="nav-text">2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、在类的头文件中尽量少引入其他头文件，尽量以向前声明-class代替"><span class="nav-number">1.3.</span> <span class="nav-text">3、在类的头文件中尽量少引入其他头文件，尽量以向前声明@class代替</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、多用字面量语法、少用与之等价的方法（语法糖）"><span class="nav-number">1.4.</span> <span class="nav-text">4、多用字面量语法、少用与之等价的方法（语法糖）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、-多用类型常量，少用-define预处理指令"><span class="nav-number">1.5.</span> <span class="nav-text">5、 多用类型常量，少用#define预处理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、用枚举表示状态、选项、状态码"><span class="nav-number">1.6.</span> <span class="nav-text">6、用枚举表示状态、选项、状态码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -795,6 +692,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
 
   
 
@@ -805,6 +706,8 @@
   
   
 
+
+  
 
 
   
