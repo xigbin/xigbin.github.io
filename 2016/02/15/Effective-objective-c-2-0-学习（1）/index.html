@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="熟悉Objective-C1、消息结构与该函数调用区别：使用消息结构的语言其运行时所应执行的代码由运行环境来决定，在运行时候才回去查找所要执行的方法，编译器不会关心接收的消息对象是什么类型，其接收消息的对象问题也是要在运行时处理，为“动态绑定”。而使用函数调用的语言，则是由编译器决定。 2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。在OC中，指针概念是用来指示对象的">
+<meta name="keywords" content="Effective objective-c 2.0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective objective-c 2.0 学习（1）">
+<meta property="og:url" content="http://m.tellemone.cn/2016/02/15/Effective-objective-c-2-0-学习（1）/index.html">
+<meta property="og:site_name" content="肖高兵的技术空间">
+<meta property="og:description" content="熟悉Objective-C1、消息结构与该函数调用区别：使用消息结构的语言其运行时所应执行的代码由运行环境来决定，在运行时候才回去查找所要执行的方法，编译器不会关心接收的消息对象是什么类型，其接收消息的对象问题也是要在运行时处理，为“动态绑定”。而使用函数调用的语言，则是由编译器决定。 2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。在OC中，指针概念是用来指示对象的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2367584-f6a1ea8a4f394a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2367584-777dc5251f64802a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2367584-66c977e5daeb0064.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2367584-06074dfe56584efe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2367584-aebb76f7e8f1d7a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2367584-87343b06a78f15c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-02-27T14:10:52.869Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Effective objective-c 2.0 学习（1）">
+<meta name="twitter:description" content="熟悉Objective-C1、消息结构与该函数调用区别：使用消息结构的语言其运行时所应执行的代码由运行环境来决定，在运行时候才回去查找所要执行的方法，编译器不会关心接收的消息对象是什么类型，其接收消息的对象问题也是要在运行时处理，为“动态绑定”。而使用函数调用的语言，则是由编译器决定。 2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。在OC中，指针概念是用来指示对象的">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2367584-f6a1ea8a4f394a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="http://m.tellemone.cn/2016/02/15/Effective-objective-c-2-0-学习（1）/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Effective objective-c 2.0 学习（1） | 肖高兵的技术空间</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">肖高兵的技术空间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://m.tellemone.cn/2016/02/15/Effective-objective-c-2-0-学习（1）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaogaobing">
+      <meta itemprop="description" content="欢迎来到我的个人空间">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="肖高兵的技术空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Effective objective-c 2.0 学习（1）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-02-15 22:07:24" itemprop="dateCreated datePublished" datetime="2016-02-15T22:07:24+08:00">2016-02-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-27 22:10:52" itemprop="dateModified" datetime="2019-02-27T22:10:52+08:00">2019-02-27</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="熟悉Objective-C"><a href="#熟悉Objective-C" class="headerlink" title="熟悉Objective-C"></a><strong>熟悉Objective-C</strong></h2><h3 id="1、消息结构与该函数调用"><a href="#1、消息结构与该函数调用" class="headerlink" title="1、消息结构与该函数调用"></a>1、消息结构与该函数调用</h3><p>区别：使用消息结构的语言其运行时所应执行的代码由运行环境来决定，在运行时候才回去查找所要执行的方法，编译器不会关心接收的消息对象是什么类型，其接收消息的对象问题也是要在运行时处理，为“动态绑定”。而使用函数调用的语言，则是由编译器决定。</p>
+<h3 id="2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。"><a href="#2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。" class="headerlink" title="2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。"></a>2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。</h3><p>在OC中，指针概念是用来指示对象的。所有的对象都必须是一个指向该类型的指针表示，因为对象所占用的内训空间是分配在“堆空间”（heap space）中，不是分配在“栈”（stack）上。且不能在栈上分配OC对象。两个指针指向一个实例时，栈帧则分配两块内存存放变量指向堆中的同一个实际内容。</p>
+<p><code>NSString *someString = @“someString”;</code></p>
+<p><code>NSString *anotherString = someString;</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2367584-f6a1ea8a4f394a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<ul>
+<li>1、分配在堆中的内存需要自己管理，而在栈中用于保存变量的内存则会在其栈帧弹出的时候自动清理。</li>
+<li>2、在OC中遇到定义不是用*的变量， 可能会使用到“栈空间”，这些变量保存的都不是OC对象。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2367584-777dc5251f64802a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="3、在类的头文件中尽量少引入其他头文件，尽量以向前声明-class代替"><a href="#3、在类的头文件中尽量少引入其他头文件，尽量以向前声明-class代替" class="headerlink" title="3、在类的头文件中尽量少引入其他头文件，尽量以向前声明@class代替"></a>3、在类的头文件中尽量少引入其他头文件，尽量以向前声明@class代替</h3><ul>
+<li>1、减少编译时间、提高效率</li>
+<li>2、可以解决两个类之间相互引用的问题</li>
+<li>3、继承父类的子类必须在头文件中导入父类、而对于协议的使用则最好是在实现文件中声明此类实现了该稳妥协议、并将这段代码放在分类中，这样可以缩减编译时间并且可以降低彼此的依赖程度 。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2367584-66c977e5daeb0064.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20170109-2.png"></p>
+<h3 id="4、多用字面量语法、少用与之等价的方法（语法糖）"><a href="#4、多用字面量语法、少用与之等价的方法（语法糖）" class="headerlink" title="4、多用字面量语法、少用与之等价的方法（语法糖）"></a>4、多用字面量语法、少用与之等价的方法（语法糖）</h3><p><code>NSArray *arrayA = [NSArray arrayWithObjects:object1, object2, object3, nil];</code></p>
+<p><code>NSArray *arrayB = @[object1, object2, object3];</code></p>
+<p>以上两种方式创建数组、假如对象object2为nil时，后者将会抛出异常，前者虽然能够成功创建，但只有object1一个对象。<code>arrayWithObjects:</code>方法会依次处理各个参数，直到发现nil为止。若其中有某个对象为nil，则会提前结束。使用后者定义数组更能查找到问题所在。创建NSDictionary类似。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2367584-06074dfe56584efe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="5、-多用类型常量，少用-define预处理指令"><a href="#5、-多用类型常量，少用-define预处理指令" class="headerlink" title="5、 多用类型常量，少用#define预处理指令"></a>5、 多用类型常量，少用#define预处理指令</h3><p><code>#define ANIMATION_DURATION 0.3</code></p>
+<p><code>static const NSTimeinterval kAnimationDuration = 0.3;</code></p>
+<ul>
+<li><p>1、若常量只局限于某个实现文件之内，则在定义的常量名称前面加个字母k；如果常量在类之外可见，则通常可以以类名为前缀。</p>
+</li>
+<li><p>2、定义的常量可尽量写在实现文件中。可写在<code>@implementation</code>与导入头文件代码之间。后者的声明方式变量用const、static来声明，const用于不可改变的常量。static修饰符意味着只在当前定义此变量的编译单元（对应的实现文件）中可见。若不使用static修饰，则编译器会默认给他创建一个“外部符号”（external symbol）。如果在其他某个编译单元中也声明了同名变量。则编译器会报出一条错误信息。同时用两个修饰就像<code>#define</code>一样，不过这种方式定义的常量带有类型信息。</p>
+</li>
+<li><p>3、定义一个外界可见的长值变量，其定义方式如下：</p>
+<p><code>extern NSString *const VaeiableString; //In the header file</code></p>
+<p><code>NSString *const VaeiableString = @&quot;VaeiableString&quot;;  //In the implementation file</code></p>
+<p> 在头文件中声明，在实现文件中定义，注意const位置，这里的常量是指向<code>NSString</code>对象的指针，我们是不希望这个指针常量被改变。</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2367584-aebb76f7e8f1d7a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="6、用枚举表示状态、选项、状态码"><a href="#6、用枚举表示状态、选项、状态码" class="headerlink" title="6、用枚举表示状态、选项、状态码"></a>6、用枚举表示状态、选项、状态码</h3><ul>
+<li>1、在定义选项的时候，若选项之间可以相互组合，则各选项之间可以通过“按位或操作符”来组合，这样每个选项都可以启用或者禁用</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2367584-87343b06a78f15c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20170109-5.png"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Effective-objective-c-2-0/" rel="tag"># Effective objective-c 2.0</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/02/Runtime-isa指针理解/" rel="prev" title="Runtime - isa指针理解">
+                Runtime - isa指针理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">xiaogaobing</p>
+              <p class="site-description motion-element" itemprop="description">欢迎来到我的个人空间</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟悉Objective-C"><span class="nav-number">1.</span> <span class="nav-text">熟悉Objective-C</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、消息结构与该函数调用"><span class="nav-number">1.1.</span> <span class="nav-text">1、消息结构与该函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。"><span class="nav-number">1.2.</span> <span class="nav-text">2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、在类的头文件中尽量少引入其他头文件，尽量以向前声明-class代替"><span class="nav-number">1.3.</span> <span class="nav-text">3、在类的头文件中尽量少引入其他头文件，尽量以向前声明@class代替</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、多用字面量语法、少用与之等价的方法（语法糖）"><span class="nav-number">1.4.</span> <span class="nav-text">4、多用字面量语法、少用与之等价的方法（语法糖）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、-多用类型常量，少用-define预处理指令"><span class="nav-number">1.5.</span> <span class="nav-text">5、 多用类型常量，少用#define预处理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、用枚举表示状态、选项、状态码"><span class="nav-number">1.6.</span> <span class="nav-text">6、用枚举表示状态、选项、状态码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaogaobing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

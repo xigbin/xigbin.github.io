@@ -96,23 +96,27 @@
 
 
 
-  <meta name="description" content="欢迎来到我的个人空间">
-<meta property="og:type" content="website">
-<meta property="og:title" content="肖高兵的技术空间">
-<meta property="og:url" content="http://m.tellemone.cn/index.html">
+  <meta name="description" content="isa指针理解instance对象实例iOS代码一般使用id来声明一个对象，对于id的理解，在文件#import&amp;lt;objc/objc.h&amp;gt;有以下声明，相关代码如下： /// An opaque type that represents an Objective-C class. typedef struct objc_class *Class;  /// Represents an i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Runtime - isa指针理解">
+<meta property="og:url" content="http://m.tellemone.cn/2017/01/02/Runtime-isa指针理解/index.html">
 <meta property="og:site_name" content="肖高兵的技术空间">
-<meta property="og:description" content="欢迎来到我的个人空间">
+<meta property="og:description" content="isa指针理解instance对象实例iOS代码一般使用id来声明一个对象，对于id的理解，在文件#import&amp;lt;objc/objc.h&amp;gt;有以下声明，相关代码如下： /// An opaque type that represents an Objective-C class. typedef struct objc_class *Class;  /// Represents an i">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/xigbin/pic/blob/master/md_pic/runtime_isa%E6%8C%87%E9%92%88%E7%BB%93%E6%9E%84%E5%9B%BE.png?raw=true">
+<meta property="og:image" content="https://github.com/xigbin/pic/blob/master/md_pic/runtime_%E5%AE%9E%E4%BE%8B%E7%B1%BB%E5%AF%B9%E8%B1%A1%E7%9A%84isa%E6%8C%87%E9%92%88%E7%BB%93%E6%9E%84%E5%9B%BE.png?raw=true">
+<meta property="og:updated_time" content="2019-02-27T14:13:16.932Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="肖高兵的技术空间">
-<meta name="twitter:description" content="欢迎来到我的个人空间">
+<meta name="twitter:title" content="Runtime - isa指针理解">
+<meta name="twitter:description" content="isa指针理解instance对象实例iOS代码一般使用id来声明一个对象，对于id的理解，在文件#import&amp;lt;objc/objc.h&amp;gt;有以下声明，相关代码如下： /// An opaque type that represents an Objective-C class. typedef struct objc_class *Class;  /// Represents an i">
+<meta name="twitter:image" content="https://github.com/xigbin/pic/blob/master/md_pic/runtime_isa%E6%8C%87%E9%92%88%E7%BB%93%E6%9E%84%E5%9B%BE.png?raw=true">
 
 
 
 
 
 
-  <link rel="canonical" href="http://m.tellemone.cn/">
+  <link rel="canonical" href="http://m.tellemone.cn/2017/01/02/Runtime-isa指针理解/">
 
 
 
@@ -122,7 +126,7 @@
   };
 </script>
 
-  <title>肖高兵的技术空间</title>
+  <title>Runtime - isa指针理解 | 肖高兵的技术空间</title>
   
 
 
@@ -170,8 +174,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -209,7 +212,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -271,156 +274,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://m.tellemone.cn/2019/02/23/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiaogaobing">
-      <meta itemprop="description" content="欢迎来到我的个人空间">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="肖高兵的技术空间">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/23/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-23 17:36:42" itemprop="dateCreated datePublished" datetime="2019-02-23T17:36:42+08:00">2019-02-23</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -452,10 +308,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/01/02/Runtime-isa指针理解/" class="post-title-link" itemprop="url">Runtime - isa指针理解</a>
+          <h1 class="post-title" itemprop="name headline">Runtime - isa指针理解
+
               
             
           </h1>
@@ -531,9 +385,7 @@
       
 
       
-        
-          
-            <h1 id="isa指针理解"><a href="#isa指针理解" class="headerlink" title="isa指针理解"></a>isa指针理解</h1><h2 id="instance对象实例"><a href="#instance对象实例" class="headerlink" title="instance对象实例"></a>instance对象实例</h2><p>iOS代码一般使用<code>id</code>来声明一个对象，对于<code>id</code>的理解，在文件<code>#import&lt;objc/objc.h&gt;</code>有以下声明，相关代码如下：</p>
+        <h1 id="isa指针理解"><a href="#isa指针理解" class="headerlink" title="isa指针理解"></a>isa指针理解</h1><h2 id="instance对象实例"><a href="#instance对象实例" class="headerlink" title="instance对象实例"></a>instance对象实例</h2><p>iOS代码一般使用<code>id</code>来声明一个对象，对于<code>id</code>的理解，在文件<code>#import&lt;objc/objc.h&gt;</code>有以下声明，相关代码如下：</p>
 <pre><code>/// An opaque type that represents an Objective-C class.
 typedef struct objc_class *Class;
 
@@ -602,8 +454,6 @@ typedef struct objc_object *id;
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过上文的代码分析，我们已经了解了OC中的类和实例是如何映射到C语言结构体的，实例对象是一个结构体，这个结构体只有一个成员变量，指向构造它的那个类对象，这个类对象中存储了一切实例对象需要的信息包括实例变量、实例方法等，而类对象是通过元类创建的，元类中保存了类变量和类方法，这样就完美解释了整个类和实例是如何映射到结构体的。</p>
 <h2 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h2><p><a href="https://blog.csdn.net/u014205968/article/details/67639205" target="_blank" rel="noopener">iOS runtime探究(一): 从runtime开始理解面向对象的类到面向过程的结构体</a></p>
 
-          
-        
       
     </div>
 
@@ -626,204 +476,32 @@ typedef struct objc_object *id;
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://m.tellemone.cn/2016/02/15/Effective-objective-c-2-0-学习（1）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiaogaobing">
-      <meta itemprop="description" content="欢迎来到我的个人空间">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="肖高兵的技术空间">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/02/15/Effective-objective-c-2-0-学习（1）/" class="post-title-link" itemprop="url">Effective objective-c 2.0 学习（1）</a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2016/02/15/Effective-objective-c-2-0-学习（1）/" rel="next" title="Effective objective-c 2.0 学习（1）">
+                <i class="fa fa-chevron-left"></i> Effective objective-c 2.0 学习（1）
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/02/23/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-02-15 22:07:24" itemprop="dateCreated datePublished" datetime="2016-02-15T22:07:24+08:00">2016-02-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-27 22:10:52" itemprop="dateModified" datetime="2019-02-27T22:10:52+08:00">2019-02-27</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="熟悉Objective-C"><a href="#熟悉Objective-C" class="headerlink" title="熟悉Objective-C"></a><strong>熟悉Objective-C</strong></h2><h3 id="1、消息结构与该函数调用"><a href="#1、消息结构与该函数调用" class="headerlink" title="1、消息结构与该函数调用"></a>1、消息结构与该函数调用</h3><p>区别：使用消息结构的语言其运行时所应执行的代码由运行环境来决定，在运行时候才回去查找所要执行的方法，编译器不会关心接收的消息对象是什么类型，其接收消息的对象问题也是要在运行时处理，为“动态绑定”。而使用函数调用的语言，则是由编译器决定。</p>
-<h3 id="2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。"><a href="#2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。" class="headerlink" title="2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。"></a>2、ObjectIve-C作为C语言的superset，添加了面向对象的特性。</h3><p>在OC中，指针概念是用来指示对象的。所有的对象都必须是一个指向该类型的指针表示，因为对象所占用的内训空间是分配在“堆空间”（heap space）中，不是分配在“栈”（stack）上。且不能在栈上分配OC对象。两个指针指向一个实例时，栈帧则分配两块内存存放变量指向堆中的同一个实际内容。</p>
-<p><code>NSString *someString = @“someString”;</code></p>
-<p><code>NSString *anotherString = someString;</code></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2367584-f6a1ea8a4f394a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<ul>
-<li>1、分配在堆中的内存需要自己管理，而在栈中用于保存变量的内存则会在其栈帧弹出的时候自动清理。</li>
-<li>2、在OC中遇到定义不是用*的变量， 可能会使用到“栈空间”，这些变量保存的都不是OC对象。</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/2367584-777dc5251f64802a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<h3 id="3、在类的头文件中尽量少引入其他头文件，尽量以向前声明-class代替"><a href="#3、在类的头文件中尽量少引入其他头文件，尽量以向前声明-class代替" class="headerlink" title="3、在类的头文件中尽量少引入其他头文件，尽量以向前声明@class代替"></a>3、在类的头文件中尽量少引入其他头文件，尽量以向前声明@class代替</h3><ul>
-<li>1、减少编译时间、提高效率</li>
-<li>2、可以解决两个类之间相互引用的问题</li>
-<li>3、继承父类的子类必须在头文件中导入父类、而对于协议的使用则最好是在实现文件中声明此类实现了该稳妥协议、并将这段代码放在分类中，这样可以缩减编译时间并且可以降低彼此的依赖程度 。</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/2367584-66c977e5daeb0064.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20170109-2.png"></p>
-<h3 id="4、多用字面量语法、少用与之等价的方法（语法糖）"><a href="#4、多用字面量语法、少用与之等价的方法（语法糖）" class="headerlink" title="4、多用字面量语法、少用与之等价的方法（语法糖）"></a>4、多用字面量语法、少用与之等价的方法（语法糖）</h3><p><code>NSArray *arrayA = [NSArray arrayWithObjects:object1, object2, object3, nil];</code></p>
-<p><code>NSArray *arrayB = @[object1, object2, object3];</code></p>
-<p>以上两种方式创建数组、假如对象object2为nil时，后者将会抛出异常，前者虽然能够成功创建，但只有object1一个对象。<code>arrayWithObjects:</code>方法会依次处理各个参数，直到发现nil为止。若其中有某个对象为nil，则会提前结束。使用后者定义数组更能查找到问题所在。创建NSDictionary类似。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2367584-06074dfe56584efe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<h3 id="5、-多用类型常量，少用-define预处理指令"><a href="#5、-多用类型常量，少用-define预处理指令" class="headerlink" title="5、 多用类型常量，少用#define预处理指令"></a>5、 多用类型常量，少用#define预处理指令</h3><p><code>#define ANIMATION_DURATION 0.3</code></p>
-<p><code>static const NSTimeinterval kAnimationDuration = 0.3;</code></p>
-<ul>
-<li><p>1、若常量只局限于某个实现文件之内，则在定义的常量名称前面加个字母k；如果常量在类之外可见，则通常可以以类名为前缀。</p>
-</li>
-<li><p>2、定义的常量可尽量写在实现文件中。可写在<code>@implementation</code>与导入头文件代码之间。后者的声明方式变量用const、static来声明，const用于不可改变的常量。static修饰符意味着只在当前定义此变量的编译单元（对应的实现文件）中可见。若不使用static修饰，则编译器会默认给他创建一个“外部符号”（external symbol）。如果在其他某个编译单元中也声明了同名变量。则编译器会报出一条错误信息。同时用两个修饰就像<code>#define</code>一样，不过这种方式定义的常量带有类型信息。</p>
-</li>
-<li><p>3、定义一个外界可见的长值变量，其定义方式如下：</p>
-<p><code>extern NSString *const VaeiableString; //In the header file</code></p>
-<p><code>NSString *const VaeiableString = @&quot;VaeiableString&quot;;  //In the implementation file</code></p>
-<p> 在头文件中声明，在实现文件中定义，注意const位置，这里的常量是指向<code>NSString</code>对象的指针，我们是不希望这个指针常量被改变。</p>
-</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/2367584-aebb76f7e8f1d7a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<h3 id="6、用枚举表示状态、选项、状态码"><a href="#6、用枚举表示状态、选项、状态码" class="headerlink" title="6、用枚举表示状态、选项、状态码"></a>6、用枚举表示状态、选项、状态码</h3><ul>
-<li>1、在定义选项的时候，若选项之间可以相互组合，则各选项之间可以通过“按位或操作符”来组合，这样每个选项都可以启用或者禁用</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/2367584-87343b06a78f15c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20170109-5.png"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -833,14 +511,15 @@ typedef struct objc_object *id;
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -860,8 +539,17 @@ typedef struct objc_object *id;
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -918,6 +606,23 @@ typedef struct objc_object *id;
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#isa指针理解"><span class="nav-number">1.</span> <span class="nav-text">isa指针理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#instance对象实例"><span class="nav-number">1.1.</span> <span class="nav-text">instance对象实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#class-object（类对象）-metaclass（元类）"><span class="nav-number">1.2.</span> <span class="nav-text">class object（类对象）/metaclass（元类）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取isa指针的指向对象"><span class="nav-number">1.3.</span> <span class="nav-text">获取isa指针的指向对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关参考"><span class="nav-number">1.5.</span> <span class="nav-text">相关参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1046,6 +751,10 @@ typedef struct objc_object *id;
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
 
   
 
@@ -1056,6 +765,8 @@ typedef struct objc_object *id;
   
   
 
+
+  
 
 
   
